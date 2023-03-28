@@ -11,5 +11,18 @@ import androidx.room.RoomDatabase;
 public abstract class UserDatabase extends RoomDatabase {
     public abstract UserDao getUserDao();
 
+    private static UserDatabase INSTANCE;
+
+    public static UserDatabase getDBInstance(Context context) {
+        if(INSTANCE == null) {
+            INSTANCE = Room.databaseBuilder(context, UserDatabase.class, "todo")
+                    .allowMainThreadQueries()
+                    .build();
+
+        }
+
+        return INSTANCE;
+    }
+
 
 }

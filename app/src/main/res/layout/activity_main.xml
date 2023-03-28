@@ -11,9 +11,25 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/fox"
             android:layout_width="match_parent"
             android:layout_height="500dp"
             android:src="@drawable/fox"/>
+
+        <ScrollView
+            android:id="@+id/scroll1"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:fillViewport="true"
+            android:visibility="gone">
+
+            <ListView
+                android:id="@+id/add1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </ScrollView>
 
     </LinearLayout>
 
@@ -23,7 +39,6 @@
         android:gravity="center">
 
         <ImageView
-            android:id="@+id/fox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/rate_star_small_on"/>
@@ -60,13 +75,7 @@
             android:text="초기화"
             android:layout_marginRight="20dp"
             android:backgroundTint="#00FF00"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn2"
-            android:text="기록보기"
-            android:layout_marginRight="20dp"
-            android:backgroundTint="#00FF00"/>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,6 +83,32 @@
             android:text="기록"
             android:backgroundTint="#00FF00"/>
 
+
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn2"
+            android:text="기록보기"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#00FF00"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn4"
+            android:text="돌아가기"
+            android:backgroundTint="#00FF00"/>
+
+
+    </LinearLayout>
+
 
 </LinearLayout>
