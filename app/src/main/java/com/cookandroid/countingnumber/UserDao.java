@@ -22,5 +22,11 @@ public interface UserDao {
 
     @Query("SELECT * FROM count_table ORDER BY uid ASC")
     List<Todo> getAll();
+
+    @Query("SELECT count FROM count_table")
+    List<String> getCountAll();
+
+    @Query("DELETE FROM count_table")
+    void deleteAll();
 }
 

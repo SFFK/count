@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     ArrayList<String> listItem;
 
+    int countId = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         setVolumeControlStream(AudioManager.ERROR);
 
         UserDatabase db = UserDatabase.getDBInstance(this);
-        Todo todo = new Todo();
 
         fox = (ImageView) findViewById(R.id.fox);
         num1 = (TextView) findViewById(R.id.num1);
@@ -55,16 +56,25 @@ public class MainActivity extends AppCompatActivity {
         show1 = (LinearLayout) findViewById(R.id.show1);
         add1 = (ListView) findViewById(R.id.add1);
 
+        List<String> count_list = db.getUserDao().getCountAll();
+        String[] count_array = count_list.toArray(new String[count_list.size()]);
+
+        for(int i = 0; i <count_array.length; i++) {
+            listItem.add(count_array[i]);
+        }
+
+        countId = count_array.length;
+
         adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1, listItem);
-        .setText(db.getUserDao().getAll().toString());
+        add1.setAdapter(adapter);
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 count = 0;
                 num1.setText(Integer.toString(count));
-                db.getUserDao().delete(todo);
-                todo.setUid(0);
+                db.getUserDao().deleteAll();
+                countId = 0;
                 listItem.clear();
                 adapter.notifyDataSetChanged();
                 Toast.makeText(getApplicationContext(), "초기화됬습니다.", Toast.LENGTH_SHORT).show();
@@ -82,14 +92,13 @@ public class MainActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                todo.setCount(Integer.toString(count));
-                todo.setResult(count);
-                db.getUserDao().insert(new Todo());
-                listItem.add(todo.getUid() + " : " + todo.getCount());
+                Todo todo = new Todo(Integer.toString(count), count);
+                todo.setUid(countId);
+                db.getUserDao().insert(todo);
+                listItem.add(todo.getCount());
                 adapter.notifyDataSetChanged();
-                add1.setAdapter(adapter);
                 count = 0;
-                todo.setUid(todo.getUid() + 1);
+                countId += 1;
                 num1.setText(Integer.toString(count));
                 Toast.makeText(getApplicationContext(), "기록되었습니다.", Toast.LENGTH_SHORT).show();
 

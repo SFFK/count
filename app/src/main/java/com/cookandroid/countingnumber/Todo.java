@@ -4,8 +4,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "count_table")
-public class Todo {
+public class Todo implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int uid;
 
@@ -14,6 +16,11 @@ public class Todo {
 
     @ColumnInfo(name = "result")
     private int result;
+
+    public Todo(String count, int result) {
+        this.count = count;
+        this.result = result;
+    }
 
     public int getUid() {
         return uid;
