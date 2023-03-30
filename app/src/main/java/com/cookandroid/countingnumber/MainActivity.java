@@ -9,6 +9,7 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -129,6 +130,25 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return false;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                count += 1;
+                num1.setText(Integer.toString(count));
+                break;
+            case MotionEvent.ACTION_MOVE:
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+            case MotionEvent.ACTION_CANCEL:
+                break;
+            default:
+                break;
+        }
+        return true;
     }
 
 }

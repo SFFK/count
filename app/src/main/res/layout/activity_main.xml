@@ -18,6 +18,10 @@
 
         <ScrollView
             android:id="@+id/scroll1"
+            android:paddingTop="20dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="500dp"
             android:fillViewport="true"
@@ -25,8 +29,11 @@
 
             <ListView
                 android:id="@+id/add1"
+                android:background="#c0ffff"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:dividerHeight="2dp"
+                android:divider="#b4b4b4"/>
 
 
         </ScrollView>
